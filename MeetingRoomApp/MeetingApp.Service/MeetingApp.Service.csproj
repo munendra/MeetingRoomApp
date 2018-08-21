@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MeetingApp.Dto\MeetingApp.Dto.csproj" />
+    <ProjectReference Include="..\MeetingApp.Logic\MeetingApp.Logic.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,4 +9,14 @@
     <Folder Include="Implementation\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MeetingApp.Domain\MeetingApp.Domain.csproj" />
+    <ProjectReference Include="..\MeetingApp.Dto\MeetingApp.Dto.csproj" />
+    <ProjectReference Include="..\MeetingApp.Repository\MeetingApp.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
