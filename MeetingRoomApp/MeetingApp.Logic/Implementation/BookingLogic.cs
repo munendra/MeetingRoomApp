@@ -51,9 +51,9 @@ namespace MeetingApp.Logic.Implementation
 
         public async Task<double> Expense()
         {
-            var bookings =  _bookingRepository.GetAllAsync();
+            var bookings = await  _bookingRepository.GetAllAsync();
             var rooms = await _roomRepository.GetAllAsync();
-            var totalBookingFees = (from bk in  (await bookings)
+            var totalBookingFees = (from bk in   bookings
                                     select new
                                     {
                                         duration = ((bk.EndTime - bk.StartTime).TotalHours) * rooms.FirstOrDefault(r => r.Id == bk.RoomId)?.Fees,

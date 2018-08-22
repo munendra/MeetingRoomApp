@@ -60,7 +60,7 @@ namespace MeetingApp.Api.Controllers
         [Route("booking/expense/{employeeId?}")]
         public async Task<IActionResult> GetExpense(Guid? employeeId=null)
         {
-            var expense = _roomBookingService.Expense(employeeId);
+            var expense =  await _roomBookingService.Expense(employeeId);
             return Ok(expense);
         }
 
