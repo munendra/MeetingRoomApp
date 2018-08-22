@@ -3,23 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Logic", "MeetingApp.Logic\MeetingApp.Logic.csproj", "{DA48B72E-80BC-4E0F-8EBB-902AABFBC411}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Logic", "MeetingApp.Logic\MeetingApp.Logic.csproj", "{DA48B72E-80BC-4E0F-8EBB-902AABFBC411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Domain", "MeetingApp.Domain\MeetingApp.Domain.csproj", "{3A5B19B2-2124-432B-B5C8-5B0A0C77D7C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Domain", "MeetingApp.Domain\MeetingApp.Domain.csproj", "{3A5B19B2-2124-432B-B5C8-5B0A0C77D7C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Dto", "MeetingApp.Dto\MeetingApp.Dto.csproj", "{5FF597DC-FE8F-47BA-99A2-041775DC418F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Dto", "MeetingApp.Dto\MeetingApp.Dto.csproj", "{5FF597DC-FE8F-47BA-99A2-041775DC418F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Service", "MeetingApp.Service\MeetingApp.Service.csproj", "{CC15D9F0-5825-470B-A20F-D71C45D51C48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Service", "MeetingApp.Service\MeetingApp.Service.csproj", "{CC15D9F0-5825-470B-A20F-D71C45D51C48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Mapper", "MeetingApp.Mapper\MeetingApp.Mapper.csproj", "{056DF63C-F90E-4802-89AF-42EE45B6D6C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Mapper", "MeetingApp.Mapper\MeetingApp.Mapper.csproj", "{056DF63C-F90E-4802-89AF-42EE45B6D6C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Repository", "MeetingApp.Repository\MeetingApp.Repository.csproj", "{7FE54CFD-3FC1-4AC4-A316-0C207AF7E94F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Repository", "MeetingApp.Repository\MeetingApp.Repository.csproj", "{7FE54CFD-3FC1-4AC4-A316-0C207AF7E94F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{388FAEF2-F4BE-4F59-B24A-048A75E5CE56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Logic.Test", "MeetingApp.Logic.Test\MeetingApp.Logic.Test.csproj", "{0E2964AE-C914-484B-B298-13C23989914F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Logic.Test", "MeetingApp.Logic.Test\MeetingApp.Logic.Test.csproj", "{0E2964AE-C914-484B-B298-13C23989914F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Api", "MeetingApp.Api\MeetingApp.Api.csproj", "{8F52B7CE-489A-4613-B043-82D7513A004D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetingApp.Api", "MeetingApp.Api\MeetingApp.Api.csproj", "{8F52B7CE-489A-4613-B043-82D7513A004D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.DbMigration", "MeetingApp.DbMigration\MeetingApp.DbMigration.csproj", "{7C849FFD-5D47-4009-822F-475F0E33AE99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Dto.Test", "MeetingApp.Dto.Test\MeetingApp.Dto.Test.csproj", "{35B46E71-5509-498A-A79D-FA1FB3DF0B91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,12 +63,21 @@ Global
 		{8F52B7CE-489A-4613-B043-82D7513A004D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F52B7CE-489A-4613-B043-82D7513A004D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F52B7CE-489A-4613-B043-82D7513A004D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C849FFD-5D47-4009-822F-475F0E33AE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C849FFD-5D47-4009-822F-475F0E33AE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C849FFD-5D47-4009-822F-475F0E33AE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C849FFD-5D47-4009-822F-475F0E33AE99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35B46E71-5509-498A-A79D-FA1FB3DF0B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35B46E71-5509-498A-A79D-FA1FB3DF0B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35B46E71-5509-498A-A79D-FA1FB3DF0B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35B46E71-5509-498A-A79D-FA1FB3DF0B91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0E2964AE-C914-484B-B298-13C23989914F} = {388FAEF2-F4BE-4F59-B24A-048A75E5CE56}
+		{35B46E71-5509-498A-A79D-FA1FB3DF0B91} = {388FAEF2-F4BE-4F59-B24A-048A75E5CE56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9CF41D92-42B3-4167-8B96-0355486BBA87}
