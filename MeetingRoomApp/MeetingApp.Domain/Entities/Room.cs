@@ -19,8 +19,6 @@ namespace MeetingApp.Domain.Entities
 
         public bool IsBooked { get; set; }
 
-        public virtual IEnumerable<RoomFacility> Facilities { get; set; }
-    
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
 
