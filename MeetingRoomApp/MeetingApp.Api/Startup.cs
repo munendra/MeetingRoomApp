@@ -45,6 +45,7 @@ namespace MeetingApp.Api
             services.AddTransient<IBookingRepository, BookingRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IRoomRepository, RoomRepository>();
+            services.AddTransient<IRoomFacilityRepository, RoomFacilityRepository>();
 
             services.AddTransient<IBookingLogic, BookingLogic>();
             services.AddTransient<IEmployeeLogic, EmployeeLogic>();

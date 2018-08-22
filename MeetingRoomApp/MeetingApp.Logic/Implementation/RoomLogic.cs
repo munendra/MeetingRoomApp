@@ -56,7 +56,7 @@ namespace MeetingApp.Logic.Contract
         }
 
 
-        public async Task<IEnumerable<RoomDto>> GetAllAsync(int? seatingCapacity = 0, IEnumerable<Dictionary<string, string>> filters = null)
+        public async Task<IEnumerable<RoomDto>> GetAllAsync(int? seatingCapacity, IEnumerable<Dictionary<string, string>> filters)
         {
             var rooms = await GetAll();
             rooms = rooms.Where(r => r.SeatingCapacity >= seatingCapacity.Value);
