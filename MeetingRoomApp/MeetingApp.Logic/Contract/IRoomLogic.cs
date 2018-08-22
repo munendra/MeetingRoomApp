@@ -11,5 +11,7 @@ namespace MeetingApp.Logic.Implementation
         Task<IEnumerable<RoomDto>> GetAll();
 
         Task<bool> CheckRoomAvailability(CheckBookingDto checkBooking);
+
+        Task<IEnumerable<RoomDto>> GetAvailableRoom(DateTime startDate);
     }
 }

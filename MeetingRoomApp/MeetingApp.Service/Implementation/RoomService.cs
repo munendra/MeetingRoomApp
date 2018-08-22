@@ -1,6 +1,7 @@
 ﻿using MeetingApp.Dto;
 using MeetingApp.Logic.Implementation;
 using MeetingApp.Service.Contract;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,7 +22,12 @@ namespace MeetingApp.Service.Implementation
 
         public async Task<bool> CheckRoomAvailability(CheckBookingDto checkBooking)
         {
-           return await _roomLogic.CheckRoomAvailability(checkBooking);
+            return await _roomLogic.CheckRoomAvailability(checkBooking);
+        }
+
+        public async Task<IEnumerable<RoomDto>> GetAvailableRoom(DateTime startDate)
+        {
+            return await _roomLogic.GetAvailableRoom(startDate);
         }
     }
 }

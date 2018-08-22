@@ -5,6 +5,7 @@ using MeetingApp.Repository.Contracts;
 using MeetingApp.Resources.ErrorMessages;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MeetingApp.Logic.Contract
@@ -15,6 +16,7 @@ namespace MeetingApp.Logic.Contract
         private readonly IRoomRepository _roomRepository;
         private readonly IBookingValidation _bookingValidation;
         private readonly IBookingRepository _bookingRepository;
+
         public RoomLogic(IRoomRepository roomRepository,
             IBookingValidation bookingValidation,
             IBookingRepository bookingRepository)
@@ -40,6 +42,15 @@ namespace MeetingApp.Logic.Contract
                 throw new Exception(ErrorMessage.RoomNotAvailable);
             }
             return isAvailable;
+        }
+
+
+        public async Task<IEnumerable<RoomDto>> GetAvailableRoom(DateTime startDate)
+        {
+            var rooms = Mapper.Map<IEnumerable<RoomDto>>((await _roomRepository.GetAllAsync()));
+            var alreadBookedRooms = await _bookingRepository.GetAllAsync(startDate);
+            rooms = rooms.Where(r => !alreadBookedRooms.Select(s => s.RoomId).Contains(r.Id));
+            return rooms;
         }
     }
 }

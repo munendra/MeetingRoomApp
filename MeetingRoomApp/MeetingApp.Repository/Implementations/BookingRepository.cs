@@ -21,6 +21,18 @@ namespace MeetingApp.Repository.Implementations
             return await _baseRepository.GetAllAsync(booking => booking.RoomId == roomId);
         }
 
+        public async Task<IEnumerable<Booking>> GetAllAsync()
+        {
+          return await  _baseRepository.GetAsync();
+        }
+
+
+        public async Task<IEnumerable<Booking>> GetAllAsync(DateTime fromDatetime)
+        {
+            return await _baseRepository.GetAllAsync(booking=>booking.EndTime > fromDatetime);
+        }
+
+
 
         public async Task<Booking> AddAsync(Booking booking)
         {

@@ -12,6 +12,10 @@ namespace MeetingApp.Repository.Contracts
 
         Task<Booking> AddAsync(Booking booking);
 
+        Task<IEnumerable<Booking>> GetAllAsync(DateTime fromDatetime);
+
+        Task<IEnumerable<Booking>> GetAllAsync();
+
         Task<int> SaveAsync();
     }
 }

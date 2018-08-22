@@ -1,6 +1,7 @@
 ﻿using MeetingApp.Dto;
 using MeetingApp.Service.Contract;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace MeetingApp.Api.Controllers
@@ -40,6 +41,19 @@ namespace MeetingApp.Api.Controllers
         {
             var isAvailability = await _roomService.CheckRoomAvailability(checkRoom);
             return Ok(isAvailability);
+        }
+
+
+        [HttpGet]
+        [Route("available-rooms/{from?}")]
+        public async Task<IActionResult> AvailableRooms(DateTime? from)
+        {
+            if (!from.HasValue)
+            {
+                from = DateTime.UtcNow;
+            }
+            var availableRooms = await _roomService.GetAvailableRoom(from.Value);
+            return Ok(availableRooms);
         }
     }
 }
