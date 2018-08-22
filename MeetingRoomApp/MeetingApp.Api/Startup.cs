@@ -15,6 +15,8 @@ using MeetingApp.Logic.Contract;
 using MeetingApp.Service.Implementation;
 using MeetingApp.Service.Contract;
 using MeetingApp.Api.Middleware;
+using Newtonsoft.Json;
+using System;
 
 namespace MeetingApp.Api
 {
@@ -39,10 +41,13 @@ namespace MeetingApp.Api
             services
                .AddMvc(options =>
                    {
+
                        options.Filters.Add(new ProducesAttribute("application/json"));
+                       options.Filters.Add(typeof(ValidateModelStateAttribute));
                    }
                 )
                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BookingValidator>());
+            
             services.AddAutoMapper();
             services.AddDbContext<MeetingAppDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));

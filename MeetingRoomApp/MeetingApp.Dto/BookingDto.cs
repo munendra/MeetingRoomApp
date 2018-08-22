@@ -1,8 +1,9 @@
 ﻿using System;
-using FluentValidation;
+
 
 namespace MeetingApp.Dto
 {
+   // [Validator(typeof(BookingValidator))]
     public class BookingDto
     {
 
