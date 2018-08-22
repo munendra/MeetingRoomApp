@@ -33,7 +33,7 @@ namespace MeetingApp.Service.Implementation
 
         public async Task<IEnumerable<RoomDto>> GetAll(int? seatingCapacity = 0, IEnumerable<Dictionary<string, string>> filters = null)
         {
-           _roomLogic.  
+           return await _roomLogic.GetAllAsync(seatingCapacity,filters);
         }
     }
 }

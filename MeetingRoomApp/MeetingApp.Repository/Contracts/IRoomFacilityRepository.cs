@@ -8,6 +8,6 @@ namespace MeetingApp.Repository.Contracts
 {
    public interface IRoomFacilityRepository
     {
-        Task<IEnumerable<RoomFacility>> GetByRoomIdsAsync(IEnumerable<Guid> roomIds)
+        Task<IEnumerable<RoomFacility>> GetByRoomIdsAsync(IEnumerable<Guid> roomIds);
     }
 }

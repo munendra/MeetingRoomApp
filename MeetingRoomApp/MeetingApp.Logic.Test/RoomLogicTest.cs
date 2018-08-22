@@ -20,6 +20,7 @@ namespace MeetingApp.Logic.Test
         private Mock<IRoomRepository> _roomRepository;
         private Mock<IBookingValidationLogic> _bookingValidation;
         private Mock<IBookingRepository> _bookingRepository;
+        private Mock<IRoomFacilityRepository> _roomFacilityRepository;
 
         [TestInitialize]
         public void Init()
@@ -28,7 +29,8 @@ namespace MeetingApp.Logic.Test
             _roomRepository = new Mock<IRoomRepository>();
             _bookingValidation = new Mock<IBookingValidationLogic>();
             _bookingRepository = new Mock<IBookingRepository>();
-            roomLogic = new RoomLogic(_roomRepository.Object, _bookingValidation.Object, _bookingRepository.Object);
+            _roomFacilityRepository = new Mock<IRoomFacilityRepository>();
+            roomLogic = new RoomLogic(_roomRepository.Object, _bookingValidation.Object, _bookingRepository.Object, _roomFacilityRepository.Object);
         }
 
         [TestMethod]
@@ -53,6 +55,15 @@ namespace MeetingApp.Logic.Test
             var rooms = await roomLogic.GetAvailableRoom(new DateTime(2018, 08, 22, 20, 00, 00));
             Assert.IsTrue(rooms.Count() == 2);
         }
+
+
+        [TestMethod]
+        public async Task RoomLogic_GetAllAsync_ShouldReturnRoomsByFacilityFilterd()
+        {
+            var rooms = await roomLogic.GetAllAsync();
+            Assert.AreEqual(2, rooms.Count());
+        }
+
 
 
         private IEnumerable<Room> GetRooms()

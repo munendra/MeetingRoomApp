@@ -61,7 +61,7 @@ namespace MeetingApp.Logic.Contract
             var rooms = await GetAll();
             rooms = rooms.Where(r => r.SeatingCapacity <= seatingCapacity.Value);
             var roomFacility = await _roomFacilityRepository.GetByRoomIdsAsync(rooms.Select(r=>r.Id));
-
+          
             return rooms;
         }
     }
