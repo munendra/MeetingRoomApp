@@ -1,0 +1,1 @@
+﻿Insert into Employee(EmpId,FullName) values('Emp-1','Test')

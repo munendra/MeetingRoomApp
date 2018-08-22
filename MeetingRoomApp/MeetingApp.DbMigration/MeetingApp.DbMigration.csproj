@@ -10,9 +10,13 @@
     <None Remove="Scripts\2-Create-RoomFacility.sql" />
     <None Remove="Scripts\3-Create-Employee.sql" />
     <None Remove="Scripts\4-Create-Booking.sql" />
+    <None Remove="Scripts\5-Insert-Employee.sql" />
+    <None Remove="Scripts\6-Insert-Room.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\6-Insert-Room.sql" />
+    <EmbeddedResource Include="Scripts\5-Insert-Employee.sql" />
     <EmbeddedResource Include="Scripts\1-Create-Room.sql" />
     <EmbeddedResource Include="Scripts\2-Create-RoomFacility.sql" />
     <EmbeddedResource Include="Scripts\3-Create-Employee.sql" />

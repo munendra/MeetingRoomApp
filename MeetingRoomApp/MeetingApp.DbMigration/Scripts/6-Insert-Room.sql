@@ -1,0 +1,1 @@
+﻿Insert into Room(Name,Fees,SeatingCapacity,IsBooked) values('Room-1',2,50,0)
