@@ -26,15 +26,21 @@ namespace MeetingApp.Domain.Context
                 if (auditableEntity.State == EntityState.Added ||
                     auditableEntity.State == EntityState.Modified)
                 {
-                    auditableEntity.Entity.Modified = DateTime.UtcNow;
+                    auditableEntity.Entity.ModifiedAt = DateTime.UtcNow;
 
                     if (auditableEntity.State == EntityState.Added)
                     {
-                        auditableEntity.Entity.Created = DateTime.UtcNow;
+                        auditableEntity.Entity.CreatedAt = DateTime.UtcNow;
                     }
                 }
             }
         }
+
+
+        public virtual DbSet<Booking> Booking { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Room> Room { get; set; }
+        public virtual DbSet<RoomFacility> RoomFacility { get; set; }
 
     }
 }

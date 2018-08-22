@@ -21,9 +21,11 @@ namespace MeetingApp.Domain.Entities
 
         public string Value { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        public DateTime Modified { get; set; }
+        public DateTime ModifiedAt { get; set; }
+
+        [Timestamp]
 
         public byte[] RowVersion { get; set; }
     }

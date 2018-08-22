@@ -7,6 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using AutoMapper;
 using MeetingApp.Dto.Validations;
+using Microsoft.AspNetCore.Mvc;
+using MeetingApp.Repository.Contracts;
+using MeetingApp.Repository.Implementations;
+using MeetingApp.Logic.Implementation;
+using MeetingApp.Logic.Contract;
+using MeetingApp.Service.Implementation;
+using MeetingApp.Service.Contract;
 
 namespace MeetingApp.Api
 {
@@ -29,11 +36,24 @@ namespace MeetingApp.Api
             services.AddSingleton<IConfiguration>(Configuration);
 
             services
-               .AddMvc()
+               .AddMvc(options =>
+                   {
+                       options.Filters.Add(new ProducesAttribute("application/json"));
+                   }
+                )
                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BookingValidator>());
             services.AddAutoMapper();
-
             services.AddDbContext<MeetingAppDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+            services.AddTransient<IBookingRepository, BookingRepository>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddTransient<IMeetingRoomBookingLogic, MeetingRoomBookingLogic>();
+            services.AddTransient<IEmployeeLogic, EmployeeLogic>();
+
+            services.AddTransient<IMeetingRoomBookingService, MeetingRoomBookingService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

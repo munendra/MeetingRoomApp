@@ -4,9 +4,12 @@ RoomId uniqueidentifier not null,
 EmployeeId uniqueidentifier not null,
 StartTime datetime,
 EndTime Datetime,
+TotalAmount decimal,
  CONSTRAINT FK_Room_Id_Booking FOREIGN KEY (RoomID)
     REFERENCES Room(Id),
  CONSTRAINT FK_Booking_Employee_Id FOREIGN KEY (EmployeeId)
     REFERENCES Employee(Id),
-RowVersion rowversion
+RowVersion rowversion,
+CreatedAt		datetime,
+ModifiedAt		datetime
 )

@@ -1,19 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MeetingApp.Dto;
+using MeetingApp.Service.Contract;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace MeetingApp.Api.Controllers
 {
-   
+
     [Route("api/v1/meeting-room")]
     public class MeetingRoom : Controller
     {
-        [HttpPost]
-        public IActionResult Book()
+        private readonly IMeetingRoomBookingService _meetingRoomBookingService;
+        public MeetingRoom(IMeetingRoomBookingService meetingRoomBookingService)
         {
-            return Ok();
+            _meetingRoomBookingService = meetingRoomBookingService;
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Post([FromBody]BookingDto booking)
+        {
+            await _meetingRoomBookingService.Booking(booking);
+            return Ok(booking);
         }
 
         [HttpGet]

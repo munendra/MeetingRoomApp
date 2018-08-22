@@ -21,8 +21,10 @@ namespace MeetingApp.Domain.Entities
 
         public virtual IEnumerable<RoomFacility> Facilities { get; set; }
     
-        public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
+
+        [Timestamp]
         public byte[] RowVersion { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MeetingApp.Domain.Entities
 {
     [Table("Booking")]
-    public class Booking
+    public class Booking:IAuditable
     {
         [Key]
         public Guid Id { get; set; }
@@ -22,9 +22,13 @@ namespace MeetingApp.Domain.Entities
 
         public DateTime StartTime { get; set; }
 
-        public DateTime EndDateTime { get; set; }
+        public DateTime EndTime { get; set; }
 
+        [Timestamp]
         public byte[] RowVersion { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime ModifiedAt { get; set; }
 
 
     }

@@ -24,31 +24,19 @@ namespace MeetingApp.Repository.Implementations
             return Task.FromResult(entity);
         }
 
-        public void Delete(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            return DbContext.Set<TEntity>().Where(predicate).ToListAsync();
-        }
-
-        public Task<List<TEntity>> GetAll<TKey>(Expression<Func<TEntity, TKey>> orderBy, int skip, int take)
-        {
-            return DbContext.Set<TEntity>().OrderBy(orderBy).Skip(skip).Take(take).ToListAsync();
-        }
-
-        public Task<List<TEntity>> Get()
+        public Task<List<TEntity>> GetAsync()
         {
             return DbContext.Set<TEntity>().ToListAsync();
         }
 
-
-
-        public Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return DbContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
+        }
+
+        public Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return DbContext.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
         public async Task<int> SaveAsync()

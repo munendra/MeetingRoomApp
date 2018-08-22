@@ -38,7 +38,7 @@ namespace MeetingApp.Dto.Test
         }
 
         [TestMethod]
-        public void BookingValidator_ShouldFailIfEndDateTimeIsGreaoterThenStartDateTime()
+        public void BookingValidator_ShouldFailIfEndDateTimeIsGreaterThenStartDateTime()
         {
             var bookingVal = new BookingValidator();
             var booking = new BookingDto

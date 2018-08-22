@@ -6,7 +6,7 @@ namespace MeetingApp.Domain.Entities
 {
     public interface IAuditable
     {
-        DateTime Created { get; set; }
-        DateTime Modified { get; set; }
+        DateTime CreatedAt { get; set; }
+        DateTime ModifiedAt { get; set; }
     }
 }
