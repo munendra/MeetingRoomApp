@@ -29,5 +29,11 @@ namespace MeetingApp.Service.Implementation
         {
             return await _roomLogic.GetAvailableRoom(startDate);
         }
+
+
+        public async Task<IEnumerable<RoomDto>> GetAll(int? seatingCapacity = 0, IEnumerable<Dictionary<string, string>> filters = null)
+        {
+           _roomLogic.  
+        }
     }
 }

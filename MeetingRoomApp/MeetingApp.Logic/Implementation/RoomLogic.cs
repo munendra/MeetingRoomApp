@@ -16,14 +16,16 @@ namespace MeetingApp.Logic.Contract
         private readonly IRoomRepository _roomRepository;
         private readonly IBookingValidationLogic _bookingValidation;
         private readonly IBookingRepository _bookingRepository;
-
+        private readonly IRoomFacilityRepository _roomFacilityRepository;
         public RoomLogic(IRoomRepository roomRepository,
             IBookingValidationLogic bookingValidation,
-            IBookingRepository bookingRepository)
+            IBookingRepository bookingRepository,
+           IRoomFacilityRepository roomFacilityRepository)
         {
             _roomRepository = roomRepository;
             _bookingValidation = bookingValidation;
             _bookingRepository = bookingRepository;
+            _roomFacilityRepository = roomFacilityRepository;
         }
 
         public async Task<IEnumerable<RoomDto>> GetAll()
@@ -50,6 +52,16 @@ namespace MeetingApp.Logic.Contract
             var rooms = Mapper.Map<IEnumerable<RoomDto>>((await _roomRepository.GetAllAsync()));
             var alreadBookedRooms = await _bookingRepository.GetAllAsync(startDate);
             rooms = rooms.Where(r => !alreadBookedRooms.Select(s => s.RoomId).Contains(r.Id));
+            return rooms;
+        }
+
+
+        public async Task<IEnumerable<RoomDto>> GetAllAsync(int? seatingCapacity = 0, IEnumerable<Dictionary<string, string>> filters = null)
+        {
+            var rooms = await GetAll();
+            rooms = rooms.Where(r => r.SeatingCapacity <= seatingCapacity.Value);
+            var roomFacility = await _roomFacilityRepository.GetByRoomIdsAsync(rooms.Select(r=>r.Id));
+
             return rooms;
         }
     }

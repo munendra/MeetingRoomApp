@@ -12,5 +12,7 @@ namespace MeetingApp.Service.Contract
         Task<bool> CheckRoomAvailability(CheckBookingDto checkBooking);
 
         Task<IEnumerable<RoomDto>> GetAvailableRoom(DateTime startDate);
+
+        Task<IEnumerable<RoomDto>> GetAll(int? seatingCapacity, IEnumerable<Dictionary<string, string>> filters = null);
     }
 }

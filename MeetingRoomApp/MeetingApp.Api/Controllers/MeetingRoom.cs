@@ -68,9 +68,9 @@ namespace MeetingApp.Api.Controllers
 
         [HttpGet]
         [Route("Search/{SeatingCapacity?}/{filters?}")]
-        public async Task<IActionResult> GetSearch(int? SeatingCapacity=0, IEnumerable<Dictionary<string, string>> filters=null)
+        public async Task<IActionResult> GetSearch(int? seatingCapacity=0, IEnumerable<Dictionary<string, string>> filters=null)
         {
-            var rooms = await _roomService.GetAll();
+            var rooms = await _roomService.GetAll(seatingCapacity, filters);
             return Ok(rooms);
         }
 
