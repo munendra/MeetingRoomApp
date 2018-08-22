@@ -1,6 +1,6 @@
 Booking a meeting room<br>
-Url: localhost:5000/api/v1/meeting-room/
-Type: Post
+Url: localhost:5000/api/v1/meeting-room/ <br>
+Type: Post <br>
 Data: {
   "employeeName": "test",
   "EmployeeId": "p6",
@@ -8,3 +8,4 @@ Data: {
   "startDateTime": "2018-08-22T09:00:00",
   "endDateTime": "2018-08-22T10:00:00"
 }
+<br>
