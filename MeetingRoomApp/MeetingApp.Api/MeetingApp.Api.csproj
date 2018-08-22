@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="4.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.2" />
@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MeetingApp.Domain\MeetingApp.Domain.csproj" />
     <ProjectReference Include="..\MeetingApp.Dto\MeetingApp.Dto.csproj" />
+    <ProjectReference Include="..\MeetingApp.Mapper\MeetingApp.Mapper.csproj" />
     <ProjectReference Include="..\MeetingApp.Service\MeetingApp.Service.csproj" />
   </ItemGroup>
 

@@ -4,7 +4,7 @@ Name			varchar(max) not null,
 Price			decimal,
 SeatingCapacity int,
 IsBooked		bit default(0),
-CreatedAt		datetime,
-ModifiedAt		datetime,
+CreatedAt		datetime not null default(GetDate()),
+ModifiedAt		datetime not null default(GetDate()),
 RowVersion		rowversion
 )

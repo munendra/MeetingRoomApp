@@ -1,21 +1,21 @@
-﻿using MeetingApp.Domain.Context;
+﻿using AutoMapper;
+using FluentValidation.AspNetCore;
+using MeetingApp.Api.Middleware;
+using MeetingApp.Domain.Context;
+using MeetingApp.Dto.Validations;
+using MeetingApp.Logic.Contract;
+using MeetingApp.Logic.Implementation;
+using MeetingApp.Mapper;
+using MeetingApp.Repository.Contracts;
+using MeetingApp.Repository.Implementations;
+using MeetingApp.Service.Contract;
+using MeetingApp.Service.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation.AspNetCore;
-using AutoMapper;
-using MeetingApp.Dto.Validations;
-using Microsoft.AspNetCore.Mvc;
-using MeetingApp.Repository.Contracts;
-using MeetingApp.Repository.Implementations;
-using MeetingApp.Logic.Implementation;
-using MeetingApp.Logic.Contract;
-using MeetingApp.Service.Implementation;
-using MeetingApp.Service.Contract;
-using MeetingApp.Api.Middleware;
-using Newtonsoft.Json;
 using System;
 
 namespace MeetingApp.Api
@@ -38,6 +38,21 @@ namespace MeetingApp.Api
         {
             services.AddSingleton<IConfiguration>(Configuration);
 
+
+            services.AddDbContext<MeetingAppDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+            services.AddTransient<IBookingRepository, BookingRepository>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IRoomRepository, RoomRepository>();
+
+            services.AddTransient<IMeetingRoomBookingLogic, MeetingRoomBookingLogic>();
+            services.AddTransient<IEmployeeLogic, EmployeeLogic>();
+            services.AddTransient<IRoomLogic, RoomLogic>();
+
+            services.AddTransient<IMeetingRoomBookingService, MeetingRoomBookingService>();
+            services.AddTransient<IRoomService, RoomService>();
+
             services
                .AddMvc(options =>
                    {
@@ -47,32 +62,21 @@ namespace MeetingApp.Api
                    }
                 )
                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BookingValidator>());
-            
-            services.AddAutoMapper();
-            services.AddDbContext<MeetingAppDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-
-            services.AddTransient<IBookingRepository, BookingRepository>();
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-
-            services.AddTransient<IMeetingRoomBookingLogic, MeetingRoomBookingLogic>();
-            services.AddTransient<IEmployeeLogic, EmployeeLogic>();
-
-            services.AddTransient<IMeetingRoomBookingService, MeetingRoomBookingService>();
+            services.AddAutoMapper(typeof(RoomMapper));
 
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStatusCodePages();
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseStatusCodePagesWithRedirects("/error/{0}");
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseStatusCodePagesWithRedirects("/error/{0}");
+            }
             app.UseStaticFiles();
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseMvcWithDefaultRoute();

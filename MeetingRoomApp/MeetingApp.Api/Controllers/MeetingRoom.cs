@@ -10,8 +10,11 @@ namespace MeetingApp.Api.Controllers
     public class MeetingRoom : Controller
     {
         private readonly IMeetingRoomBookingService _meetingRoomBookingService;
-        public MeetingRoom(IMeetingRoomBookingService meetingRoomBookingService)
+        private readonly IRoomService _roomService;
+        public MeetingRoom(IMeetingRoomBookingService meetingRoomBookingService,
+            IRoomService roomService)
         {
+            _roomService = roomService;
             _meetingRoomBookingService = meetingRoomBookingService;
         }
 
@@ -24,9 +27,11 @@ namespace MeetingApp.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+
+        public async Task<IActionResult> Get()
         {
-            return Ok();
+            var rooms = await _roomService.GetAll();
+            return Ok(rooms);
         }
     }
 }
