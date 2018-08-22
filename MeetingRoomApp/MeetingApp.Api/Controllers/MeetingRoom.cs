@@ -2,7 +2,10 @@
 using MeetingApp.Service.Contract;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections;
 
 namespace MeetingApp.Api.Controllers
 {
@@ -61,6 +64,14 @@ namespace MeetingApp.Api.Controllers
         {
             var expense =  await _roomBookingService.Expense(employeeId);
             return Ok(expense);
+        }
+
+        [HttpGet]
+        [Route("Search/{SeatingCapacity?}/{filters?}")]
+        public async Task<IActionResult> GetSearch(int? SeatingCapacity=0, IEnumerable<Dictionary<string, string>> filters=null)
+        {
+            var rooms = await _roomService.GetAll();
+            return Ok(rooms);
         }
 
     }
