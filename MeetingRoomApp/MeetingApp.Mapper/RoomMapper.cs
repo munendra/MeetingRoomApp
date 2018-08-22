@@ -8,8 +8,8 @@ namespace MeetingApp.Mapper
     {
         public RoomMapper()
         {
-            CreateMap<RoomDto, Room>();
-            CreateMap<Room, RoomDto>();
+            CreateMap<RoomDto, Room>().ReverseMap();
+            
         }
     }
 }

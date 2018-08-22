@@ -7,16 +7,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 namespace MeetingApp.Logic.Implementation
 {
     public class MeetingRoomBookingLogic: IMeetingRoomBookingLogic
     {
         private readonly IEmployeeLogic _employeeLogic;
         private readonly IBookingRepository _bookingRepository;
-        public MeetingRoomBookingLogic(IEmployeeLogic employeeLogic, IBookingRepository bookingRepository)
+        private readonly IBookingValidation _bookingValidation;
+        public MeetingRoomBookingLogic(IEmployeeLogic employeeLogic, IBookingRepository bookingRepository, IBookingValidation bookingValidation)
         {
             _employeeLogic = employeeLogic;
             _bookingRepository = bookingRepository;
+            _bookingValidation = bookingValidation;
         }
         public async Task Booking(BookingDto booking)
         {
@@ -26,8 +29,8 @@ namespace MeetingApp.Logic.Implementation
             }
             var employeeId = await GetEmployeeDetails(booking);
 
-            var roombookings = await _bookingRepository.GetAsync(booking.RoomId);
-            CheckRoomAvailable(roombookings, booking.StartDateTime, booking.EndDateTime);
+            var roombookings = AutoMapper.Mapper.Map<IEnumerable<BookingDto>>(await _bookingRepository.GetAsync(booking.RoomId));
+            _bookingValidation.CheckRoomAvailable(roombookings, booking.StartDateTime, booking.EndDateTime);
             var bookingEntity = new Booking
             {
                 EmployeeId = employeeId,
@@ -39,14 +42,7 @@ namespace MeetingApp.Logic.Implementation
             await _bookingRepository.SaveAsync();
         }
 
-        private void CheckRoomAvailable(IEnumerable<Booking> bookings, DateTime startDate, DateTime endDateTime)
-        {
-            var isRoomBooked = bookings.Any(booking => booking.StartTime == startDate && booking.EndTime == endDateTime);
-            if (isRoomBooked)
-            {
-                throw new Exception("Room not available");
-            }
-        }
+       
 
         private async Task<Guid> GetEmployeeDetails(BookingDto booking)
         {
