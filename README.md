@@ -9,8 +9,8 @@ Data: {
   "roomId": "0F18DBD7-57D4-4E2E-808F-24A4429F478P",
   "startDateTime": "2018-08-22T09:00:00",
   "endDateTime": "2018-08-22T10:00:00"
-}
-<br>
+} <br>
+
 > Get All Rooms <br>
 Url: localhost:5000/api/v1/meeting-room/ <br>
 Type: Get <br>
@@ -18,8 +18,7 @@ Type: Get <br>
 > Check room available <br>
 Url: localhost:5000/api/v1/meeting-room/availability  <br>
 Type: POST <br>
-Data: {
- 
+Data: { 
   "roomId": "0F18DBD7-57D4-4E2E-808F-24A4429F4A1B",
   "startDateTime": "2018-08-22T10:00:00",
   "endDateTime": "2018-08-22T12:00:00"
