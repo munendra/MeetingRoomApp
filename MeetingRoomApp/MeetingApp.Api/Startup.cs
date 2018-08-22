@@ -14,6 +14,7 @@ using MeetingApp.Logic.Implementation;
 using MeetingApp.Logic.Contract;
 using MeetingApp.Service.Implementation;
 using MeetingApp.Service.Contract;
+using MeetingApp.Api.Middleware;
 
 namespace MeetingApp.Api
 {
@@ -59,15 +60,16 @@ namespace MeetingApp.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStatusCodePages();
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseStatusCodePagesWithRedirects("/error/{0}");
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseStatusCodePagesWithRedirects("/error/{0}");
+            //}
             app.UseStaticFiles();
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseMvcWithDefaultRoute();
         }
     }
