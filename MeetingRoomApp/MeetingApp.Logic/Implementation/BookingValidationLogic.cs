@@ -10,6 +10,10 @@ namespace MeetingApp.Logic.Implementation
     {
         public bool IsRoomAvailable(IEnumerable<BookingDto> bookings, DateTime startDate, DateTime endDateTime)
         {
+            if (bookings.Count()==0)
+            {
+                return true;
+            }
             return bookings.Any(booking => booking.EndDateTime < startDate);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using DbUp;
 using System;
-using System.Linq;
 using System.Reflection;
 
 namespace MeetingApp.DbMigration
@@ -9,9 +8,7 @@ namespace MeetingApp.DbMigration
     {
         static void Main(string[] args)
         {
-            var connectionString =
-        args.FirstOrDefault()
-        ?? $"Data Source=.;Initial Catalog=Db_MeetingApp;Integrated Security=True";
+            var connectionString = "Data Source=.;Initial Catalog=Db_BookingRoomApp;Integrated Security=True";
 
             var upgrader =
                 DeployChanges.To

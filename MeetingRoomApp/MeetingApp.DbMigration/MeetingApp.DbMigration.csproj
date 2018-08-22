@@ -6,6 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\1-Create-Room.sql" />
+    <None Remove="Scripts\2-Create-RoomFacility.sql" />
+    <None Remove="Scripts\3-Create-Employee.sql" />
+    <None Remove="Scripts\4-Create-Booking.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\1-Create-Room.sql" />
+    <EmbeddedResource Include="Scripts\2-Create-RoomFacility.sql" />
+    <EmbeddedResource Include="Scripts\3-Create-Employee.sql" />
+    <EmbeddedResource Include="Scripts\4-Create-Booking.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="dbup" Version="4.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.2" />
   </ItemGroup>
