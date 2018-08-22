@@ -26,6 +26,11 @@ namespace MeetingApp.Repository.Implementations
             await _employeeBaseRepository.AddAsync(employee);
         }
 
+        public async Task<IEnumerable<Employee>> GetAllAsync()
+        {
+            return await _employeeBaseRepository.GetAllAsync();
+        }
+
         public async Task<int> SaveAsync()
         {
             return await _employeeBaseRepository.SaveAsync();

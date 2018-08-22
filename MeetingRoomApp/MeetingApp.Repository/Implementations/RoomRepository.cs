@@ -17,7 +17,7 @@ namespace MeetingApp.Repository.Implementations
 
         public async Task<IEnumerable<Room>> GetAllAsync()
         {
-            return await _baseRepository.GetAsync();
+            return await _baseRepository.GetAllAsync();
         }
 
         public async Task<IEnumerable<Room>> GetByIdsAsync(IEnumerable<Guid> roomIds)

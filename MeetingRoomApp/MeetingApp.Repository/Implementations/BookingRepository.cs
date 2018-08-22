@@ -23,7 +23,7 @@ namespace MeetingApp.Repository.Implementations
 
         public async Task<IEnumerable<Booking>> GetAllAsync()
         {
-            return await _baseRepository.GetAsync();
+            return await _baseRepository.GetAllAsync();
         }
 
 

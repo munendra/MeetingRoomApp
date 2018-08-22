@@ -54,6 +54,8 @@ namespace MeetingApp.Api
             services.AddTransient<IRoomBookingService, RoomBookingService>();
             services.AddTransient<IRoomService, RoomService>();
             services.AddTransient<IBookingValidationLogic, BookingValidationLogic>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
+
 
             services
                .AddMvc(options =>

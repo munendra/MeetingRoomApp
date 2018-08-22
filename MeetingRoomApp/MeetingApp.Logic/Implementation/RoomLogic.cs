@@ -17,6 +17,7 @@ namespace MeetingApp.Logic.Contract
         private readonly IBookingValidationLogic _bookingValidation;
         private readonly IBookingRepository _bookingRepository;
         private readonly IRoomFacilityRepository _roomFacilityRepository;
+
         public RoomLogic(IRoomRepository roomRepository,
             IBookingValidationLogic bookingValidation,
             IBookingRepository bookingRepository,
@@ -67,7 +68,7 @@ namespace MeetingApp.Logic.Contract
                                         {
                                             filterdRoomsFacility = roomFacilities.Where(roomFacility => roomFacility.Name != null
                                             && filter.ContainsKey(roomFacility.Name) && filter[roomFacility.Name] == roomFacility.Value)
-                                        }).SelectMany(fr=> fr.filterdRoomsFacility.Select(r=>r.RoomId)).Distinct();
+                                        }).SelectMany(fr => fr.filterdRoomsFacility.Select(r => r.RoomId)).Distinct();
             rooms = rooms.Where(room => filterdRoomsFacility.Contains(room.Id));
 
             return rooms;

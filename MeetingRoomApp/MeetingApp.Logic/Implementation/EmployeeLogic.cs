@@ -3,6 +3,7 @@ using MeetingApp.Dto;
 using MeetingApp.Logic.Contract;
 using MeetingApp.Repository.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MeetingApp.Logic.Implementation
@@ -42,6 +43,12 @@ namespace MeetingApp.Logic.Implementation
             {
                 throw new ArgumentNullException("Invalid employee details");
             }
+        }
+
+        public async Task<IEnumerable<EmployeeDto>> GetAllAsync()
+        {
+            var employees = await _employeeRepository.GetAllAsync();
+            return AutoMapper.Mapper.Map<IEnumerable<EmployeeDto>>(employees);
         }
     }
 }

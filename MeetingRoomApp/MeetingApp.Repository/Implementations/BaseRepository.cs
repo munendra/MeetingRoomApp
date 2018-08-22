@@ -24,7 +24,7 @@ namespace MeetingApp.Repository.Implementations
             return await Task.FromResult(entity);
         }
 
-        public async Task<List<TEntity>> GetAsync()
+        public async Task<List<TEntity>> GetAllAsync()
         {
             return await DbContext.Set<TEntity>().ToListAsync();
         }

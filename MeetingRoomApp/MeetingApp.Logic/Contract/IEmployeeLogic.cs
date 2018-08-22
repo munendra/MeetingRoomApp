@@ -9,5 +9,7 @@ namespace MeetingApp.Logic.Contract
     public interface IEmployeeLogic
     {
         Task<Guid> FetchOrSaveAsync(EmployeeDto employee);
+
+        Task<IEnumerable<EmployeeDto>> GetAllAsync();
     }
 }
