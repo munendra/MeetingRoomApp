@@ -9,3 +9,7 @@ Data: {
   "endDateTime": "2018-08-22T10:00:00"
 }
 <br>
+Get All Room<br>
+Url: localhost:5000/api/v1/meeting-room/ <br>
+Type: Get <br>
+<br>
