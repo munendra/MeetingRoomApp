@@ -138,6 +138,13 @@ namespace MeetingApp.Logic.Test
         [TestMethod]
         public async Task BookingLogic_Expense_ShouldReturn6RsAsATotalBookingFees()
         {
+            var rooms = new List<Room>();
+            rooms.Add(new Room
+            {
+                Id = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B"),
+                Fees = 2
+            });
+            _roomRepository.Setup(s => s.GetAllAsync()).ReturnsAsync(rooms);
             _bookingRepo.Setup(b => b.GetAllAsync()).ReturnsAsync(GetBookings);
             var totalExpense = await _meetingRoomBookingLogic.Expense();
             Assert.AreEqual(6, totalExpense);
@@ -149,17 +156,18 @@ namespace MeetingApp.Logic.Test
         {
 
             var bookings = new List<Booking>();
-
+            var rooms = new List<Room>();
+            rooms.Add(new Room
+            {
+                Id = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B"),
+                Fees = 2
+            });
             bookings.Add(new Booking()
             {
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 22, 15, 00, 00),
                 EndTime = new DateTime(2018, 08, 22, 16, 00, 00),
-                Room = new Room
-                {
-                    Fees = 2
-                }
-
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B"),
             });
 
             bookings.Add(new Booking()
@@ -167,10 +175,7 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 23, 13, 00, 00),
                 EndTime = new DateTime(2018, 08, 23, 13, 30, 00),
-                Room = new Room
-                {
-                    Fees = 2
-                }
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B"),
             });
 
             bookings.Add(new Booking()
@@ -178,11 +183,9 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 24, 15, 00, 00),
                 EndTime = new DateTime(2018, 08, 24, 16, 00, 00),
-                Room = new Room
-                {
-                    Fees = 2
-                }
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B")
             });
+            _roomRepository.Setup(r => r.GetAllAsync()).ReturnsAsync(rooms);
             _bookingRepo.Setup(b => b.GetAllAsync()).ReturnsAsync(bookings);
             var totalExpense = await _meetingRoomBookingLogic.Expense();
             Assert.AreEqual(5, totalExpense);
@@ -198,13 +201,14 @@ namespace MeetingApp.Logic.Test
             rooms.Add(new Room
             {
                 Id = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B"),
-                Fees=2
+                Fees = 2
             });
             bookings.Add(new Booking()
             {
                 EmployeeId = Guid.Parse("CF46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 22, 15, 00, 00),
                 EndTime = new DateTime(2018, 08, 22, 16, 00, 00),
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B")
             });
 
             bookings.Add(new Booking()
@@ -212,7 +216,8 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 23, 13, 00, 00),
                 EndTime = new DateTime(2018, 08, 23, 14, 00, 00),
-               
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B")
+
             });
 
             bookings.Add(new Booking()
@@ -220,7 +225,9 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 24, 15, 00, 00),
                 EndTime = new DateTime(2018, 08, 24, 16, 00, 00),
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B")
             });
+
             _roomRepository.Setup(r => r.GetAllAsync()).ReturnsAsync(rooms);
             _bookingRepo.Setup(b => b.GetAllAsync()).ReturnsAsync(bookings);
             var totalExpense = await _meetingRoomBookingLogic.Expense(Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"));
@@ -236,10 +243,7 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 22, 15, 00, 00),
                 EndTime = new DateTime(2018, 08, 22, 16, 00, 00),
-                Room = new Room
-                {
-                    Fees = 2
-                }
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B")
 
             });
 
@@ -248,10 +252,7 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 23, 13, 00, 00),
                 EndTime = new DateTime(2018, 08, 23, 14, 00, 00),
-                Room = new Room
-                {
-                    Fees = 2
-                }
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B")
             });
 
             bookings.Add(new Booking()
@@ -259,10 +260,7 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.Parse("CE46D642-117F-40FA-AC24-08D60813E185"),
                 StartTime = new DateTime(2018, 08, 24, 15, 00, 00),
                 EndTime = new DateTime(2018, 08, 24, 16, 00, 00),
-                Room = new Room
-                {
-                    Fees = 2
-                }
+                RoomId = Guid.Parse("0F18DBD7-57D4-4E2E-808F-24A4429F4A1B")
             });
 
             return bookings;
