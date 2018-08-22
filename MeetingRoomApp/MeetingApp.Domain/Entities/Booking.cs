@@ -13,7 +13,7 @@ namespace MeetingApp.Domain.Entities
         [ForeignKey("Room")]
         public Guid RoomId { get; set; }
 
-        public virtual Room Room { get; set; }
+        public  Room Room { get; set; }
 
         [ForeignKey("Employee")]
         public Guid EmployeeId { get; set; }

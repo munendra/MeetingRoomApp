@@ -13,7 +13,7 @@ namespace MeetingApp.Domain.Entities
 
         public string Name { get; set; }
 
-        public decimal Price { get; set; }
+        public double Fees { get; set; }
 
         public int SeatingCapacity { get; set; }
 

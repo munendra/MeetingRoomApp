@@ -14,11 +14,11 @@ namespace MeetingApp.Logic.Contract
     {
 
         private readonly IRoomRepository _roomRepository;
-        private readonly IBookingValidation _bookingValidation;
+        private readonly IBookingValidationLogic _bookingValidation;
         private readonly IBookingRepository _bookingRepository;
 
         public RoomLogic(IRoomRepository roomRepository,
-            IBookingValidation bookingValidation,
+            IBookingValidationLogic bookingValidation,
             IBookingRepository bookingRepository)
         {
             _roomRepository = roomRepository;

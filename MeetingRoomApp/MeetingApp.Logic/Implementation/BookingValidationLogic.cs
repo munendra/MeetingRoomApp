@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MeetingApp.Logic.Implementation
 {
-    public class BookingValidation : IBookingValidation
+    public class BookingValidationLogic : IBookingValidationLogic
     {
         public bool IsRoomAvailable(IEnumerable<BookingDto> bookings, DateTime startDate, DateTime endDateTime)
         {

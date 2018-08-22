@@ -18,7 +18,7 @@ namespace MeetingApp.Logic.Test
     {
         private RoomLogic roomLogic;
         private Mock<IRoomRepository> _roomRepository;
-        private Mock<IBookingValidation> _bookingValidation;
+        private Mock<IBookingValidationLogic> _bookingValidation;
         private Mock<IBookingRepository> _bookingRepository;
 
         [TestInitialize]
@@ -26,7 +26,7 @@ namespace MeetingApp.Logic.Test
         {
             MapperInit.InitAutoMapper();
             _roomRepository = new Mock<IRoomRepository>();
-            _bookingValidation = new Mock<IBookingValidation>();
+            _bookingValidation = new Mock<IBookingValidationLogic>();
             _bookingRepository = new Mock<IBookingRepository>();
             roomLogic = new RoomLogic(_roomRepository.Object, _bookingValidation.Object, _bookingRepository.Object);
         }

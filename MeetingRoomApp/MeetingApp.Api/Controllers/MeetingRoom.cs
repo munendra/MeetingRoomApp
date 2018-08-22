@@ -55,5 +55,14 @@ namespace MeetingApp.Api.Controllers
             var availableRooms = await _roomService.GetAvailableRoom(from.Value);
             return Ok(availableRooms);
         }
+
+        [HttpGet]
+        [Route("booking/expense/{employeeId?}")]
+        public async Task<IActionResult> GetExpense(Guid? employeeId=null)
+        {
+            var expense = _roomBookingService.Expense(employeeId);
+            return Ok(expense);
+        }
+
     }
 }

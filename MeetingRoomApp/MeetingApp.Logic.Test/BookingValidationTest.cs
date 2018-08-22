@@ -15,7 +15,7 @@ namespace MeetingApp.Logic.Test
     public class BookingValidationTest
     {
 
-        private BookingValidation _bookingValidation;
+        private BookingValidationLogic _bookingValidation;
         private Mock<IEmployeeLogic> _EmployeeLogic;
         private Mock<IBookingRepository> _bookingRepo;
 
@@ -24,13 +24,13 @@ namespace MeetingApp.Logic.Test
         {
             _EmployeeLogic = new Mock<IEmployeeLogic>();
             _bookingRepo = new Mock<IBookingRepository>();
-            _bookingValidation = new BookingValidation();
+            _bookingValidation = new BookingValidationLogic();
 
 
         }
 
         [TestMethod]
-        public void MeetingRoomBookingLogic_Booking_ShouldThrowExceptionBookingTimeSame()
+        public void BookingValidationLogic_Booking_ShouldThrowExceptionBookingTimeSame()
         {
             var bookings = new List<BookingDto>();
             bookings.Add(new BookingDto
@@ -53,7 +53,7 @@ namespace MeetingApp.Logic.Test
 
 
         [TestMethod]
-        public void MeetingRoomBookingLogic_Booking_ShouldThrowExceptionBookingStartDateTimeIsInBetweenOfBookedSlot()
+        public void BookingValidationLogic_Booking_ShouldThrowExceptionBookingStartDateTimeIsInBetweenOfBookedSlot()
         {
             var bookings = new List<BookingDto>();
             bookings.Add(new BookingDto
@@ -76,7 +76,7 @@ namespace MeetingApp.Logic.Test
         }
 
         [TestMethod]
-        public void MeetingRoomBookingLogic_Booking_ShouldReturnFalseBookingDateTimeIsInBetweenOfBookedSlot()
+        public void BookingValidationLogic_Booking_ShouldReturnFalseBookingDateTimeIsInBetweenOfBookedSlot()
         {
             var bookings = new List<BookingDto>();
             bookings.Add(new BookingDto
@@ -97,5 +97,7 @@ namespace MeetingApp.Logic.Test
             var result = _bookingValidation.IsRoomAvailable(bookings, new DateTime(2018, 08, 22, 15, 00, 00), new DateTime(2018, 08, 22, 17, 00, 00));
             Assert.IsFalse(result);
         }
+
+
     }
 }

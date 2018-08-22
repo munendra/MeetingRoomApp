@@ -1,4 +1,5 @@
-﻿using MeetingApp.Domain.Entities;
+﻿using MeetingApp.Common;
+using MeetingApp.Domain.Entities;
 using MeetingApp.Dto;
 using MeetingApp.Logic.Contract;
 using MeetingApp.Repository.Contracts;
@@ -14,12 +15,14 @@ namespace MeetingApp.Logic.Implementation
     {
         private readonly IEmployeeLogic _employeeLogic;
         private readonly IBookingRepository _bookingRepository;
-        private readonly IBookingValidation _bookingValidation;
-        public BookingLogic(IEmployeeLogic employeeLogic, IBookingRepository bookingRepository, IBookingValidation bookingValidation)
+        private readonly IBookingValidationLogic _bookingValidation;
+        private readonly IRoomRepository _roomRepository;
+        public BookingLogic(IEmployeeLogic employeeLogic, IBookingRepository bookingRepository, IBookingValidationLogic bookingValidation, IRoomRepository roomRepository)
         {
             _employeeLogic = employeeLogic;
             _bookingRepository = bookingRepository;
             _bookingValidation = bookingValidation;
+            _roomRepository = roomRepository;
         }
 
         public async Task Booking(BookingDto booking)
@@ -46,7 +49,30 @@ namespace MeetingApp.Logic.Implementation
             await _bookingRepository.SaveAsync();
         }
 
+        public async Task<double> Expense()
+        {
+            var bookings =  _bookingRepository.GetAllAsync();
+            var rooms = await _roomRepository.GetAllAsync();
+            var totalBookingFees = (from bk in  (await bookings)
+                                    select new
+                                    {
+                                        duration = ((bk.EndTime - bk.StartTime).TotalHours) * rooms.FirstOrDefault(r => r.Id == bk.RoomId)?.Fees,
+                                    }).Sum(b => b.duration);
+            return Math.Round(totalBookingFees.Value, Constant.RoundOff);
+        }
 
+        public async Task<double> Expense(Guid employeeId)
+        {
+            var bookings = await _bookingRepository.GetAllAsync();
+            var rooms = await _roomRepository.GetAllAsync();
+            var totalBookingFees = (from bk in bookings
+                                    where bk.EmployeeId == employeeId
+                                    select new
+                                    {
+                                        duration = ((bk.EndTime - bk.StartTime).TotalHours) * rooms.FirstOrDefault(r => r.Id == bk.RoomId)?.Fees,
+                                    }).Sum(b => b.duration);
+            return Math.Round(totalBookingFees.Value, Constant.RoundOff);
+        }
 
         private async Task<Guid> GetEmployeeDetails(BookingDto booking)
         {

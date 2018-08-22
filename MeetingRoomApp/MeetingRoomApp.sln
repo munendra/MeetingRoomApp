@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Dto.Test", "Meet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Resources", "MeetingApp.Resources\MeetingApp.Resources.csproj", "{BA491FC2-504A-4C2B-8379-DF0F723E3C31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetingApp.Common", "MeetingApp.Common\MeetingApp.Common.csproj", "{CD3945A7-8381-48A3-AC63-D00B4293B32F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{BA491FC2-504A-4C2B-8379-DF0F723E3C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA491FC2-504A-4C2B-8379-DF0F723E3C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA491FC2-504A-4C2B-8379-DF0F723E3C31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD3945A7-8381-48A3-AC63-D00B4293B32F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD3945A7-8381-48A3-AC63-D00B4293B32F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD3945A7-8381-48A3-AC63-D00B4293B32F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD3945A7-8381-48A3-AC63-D00B4293B32F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

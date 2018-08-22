@@ -23,16 +23,14 @@ namespace MeetingApp.Repository.Implementations
 
         public async Task<IEnumerable<Booking>> GetAllAsync()
         {
-          return await  _baseRepository.GetAsync();
+            return await _baseRepository.GetAsync();
         }
 
 
         public async Task<IEnumerable<Booking>> GetAllAsync(DateTime fromDatetime)
         {
-            return await _baseRepository.GetAllAsync(booking=>booking.EndTime > fromDatetime);
+            return await _baseRepository.GetAllAsync(booking => booking.EndTime > fromDatetime);
         }
-
-
 
         public async Task<Booking> AddAsync(Booking booking)
         {

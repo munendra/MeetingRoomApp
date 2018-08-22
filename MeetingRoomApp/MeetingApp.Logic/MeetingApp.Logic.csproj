@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MeetingApp.Common\MeetingApp.Common.csproj" />
     <ProjectReference Include="..\MeetingApp.Domain\MeetingApp.Domain.csproj" />
     <ProjectReference Include="..\MeetingApp.Dto\MeetingApp.Dto.csproj" />
     <ProjectReference Include="..\MeetingApp.Repository\MeetingApp.Repository.csproj" />

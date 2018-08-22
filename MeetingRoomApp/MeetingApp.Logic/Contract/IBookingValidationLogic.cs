@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MeetingApp.Logic.Contract
 {
-    public interface IBookingValidation
+    public interface IBookingValidationLogic
     {
         bool IsRoomAvailable(IEnumerable<BookingDto> bookings, DateTime startDate, DateTime endDateTime);
     }

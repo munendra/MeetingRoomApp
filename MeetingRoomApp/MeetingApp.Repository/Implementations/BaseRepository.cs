@@ -18,25 +18,27 @@ namespace MeetingApp.Repository.Implementations
 
         }
 
-        public Task<TEntity> AddAsync(TEntity entity)
+        public async Task<TEntity> AddAsync(TEntity entity)
         {
-            DbContext.Set<TEntity>().AddAsync(entity);
-            return Task.FromResult(entity);
+            await DbContext.Set<TEntity>().AddAsync(entity);
+            return await Task.FromResult(entity);
         }
 
-        public Task<List<TEntity>> GetAsync()
+        public async Task<List<TEntity>> GetAsync()
         {
-            return DbContext.Set<TEntity>().ToListAsync();
+            return await DbContext.Set<TEntity>().ToListAsync();
         }
 
-        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
+        
+
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return DbContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
+            return await DbContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
 
-        public Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return DbContext.Set<TEntity>().Where(predicate).ToListAsync();
+            return await DbContext.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
         public async Task<int> SaveAsync()
