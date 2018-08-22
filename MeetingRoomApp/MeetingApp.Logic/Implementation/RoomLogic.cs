@@ -59,9 +59,17 @@ namespace MeetingApp.Logic.Contract
         public async Task<IEnumerable<RoomDto>> GetAllAsync(int? seatingCapacity = 0, IEnumerable<Dictionary<string, string>> filters = null)
         {
             var rooms = await GetAll();
-            rooms = rooms.Where(r => r.SeatingCapacity <= seatingCapacity.Value);
-            var roomFacility = await _roomFacilityRepository.GetByRoomIdsAsync(rooms.Select(r=>r.Id));
-          
+            rooms = rooms.Where(r => r.SeatingCapacity >= seatingCapacity.Value);
+            var _roomFacility = await _roomFacilityRepository.GetByRoomIdsAsync(rooms.Select(r => r.Id));
+            var roomFacilities = Mapper.Map<IEnumerable<RoomFacilityDto>>(_roomFacility);
+            var filterdRoomsFacility = (from filter in filters
+                                        select new
+                                        {
+                                            filterdRoomsFacility = roomFacilities.Where(roomFacility => roomFacility.Name != null
+                                            && filter.ContainsKey(roomFacility.Name) && filter[roomFacility.Name] == roomFacility.Value)
+                                        }).SelectMany(fr=> fr.filterdRoomsFacility.Select(r=>r.RoomId)).Distinct();
+            rooms = rooms.Where(room => filterdRoomsFacility.Contains(room.Id));
+
             return rooms;
         }
     }
