@@ -1,3 +1,4 @@
+**for Database setup run MeetingApp.DbMigration project first**
 Booking a meeting room<br>
 Url: localhost:5000/api/v1/meeting-room/ <br>
 Type: Post <br>
