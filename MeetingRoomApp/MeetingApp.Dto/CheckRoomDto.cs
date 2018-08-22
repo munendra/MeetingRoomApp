@@ -1,19 +1,10 @@
 ﻿using System;
 
-
 namespace MeetingApp.Dto
 {
- 
-    public class BookingDto
+    public  class CheckBookingDto
     {
-
-        public string EmployeeName { get; set; }
-
-        public string EmployeeId { get; set; }
-
         public Guid RoomId { get; set; }
-
-        public double TotalAmount { get; set; }
 
         public DateTime StartDateTime { get; set; }
 

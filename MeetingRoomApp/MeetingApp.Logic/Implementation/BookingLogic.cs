@@ -10,17 +10,18 @@ using System.Threading.Tasks;
 
 namespace MeetingApp.Logic.Implementation
 {
-    public class MeetingRoomBookingLogic: IMeetingRoomBookingLogic
+    public class BookingLogic : IBookingLogic
     {
         private readonly IEmployeeLogic _employeeLogic;
         private readonly IBookingRepository _bookingRepository;
         private readonly IBookingValidation _bookingValidation;
-        public MeetingRoomBookingLogic(IEmployeeLogic employeeLogic, IBookingRepository bookingRepository, IBookingValidation bookingValidation)
+        public BookingLogic(IEmployeeLogic employeeLogic, IBookingRepository bookingRepository, IBookingValidation bookingValidation)
         {
             _employeeLogic = employeeLogic;
             _bookingRepository = bookingRepository;
             _bookingValidation = bookingValidation;
         }
+
         public async Task Booking(BookingDto booking)
         {
             if (booking == null)
@@ -28,9 +29,12 @@ namespace MeetingApp.Logic.Implementation
                 throw new ArgumentNullException(ErrorMessage.BookingDetailsIsEmpty);
             }
             var employeeId = await GetEmployeeDetails(booking);
-
             var roombookings = AutoMapper.Mapper.Map<IEnumerable<BookingDto>>(await _bookingRepository.GetAsync(booking.RoomId));
-            _bookingValidation.CheckRoomAvailable(roombookings, booking.StartDateTime, booking.EndDateTime);
+            var isAvailable = _bookingValidation.IsRoomAvailable(roombookings, booking.StartDateTime, booking.EndDateTime);
+            if (!isAvailable)
+            {
+                throw new Exception(ErrorMessage.RoomNotAvailable);
+            }
             var bookingEntity = new Booking
             {
                 EmployeeId = employeeId,
@@ -42,7 +46,7 @@ namespace MeetingApp.Logic.Implementation
             await _bookingRepository.SaveAsync();
         }
 
-       
+
 
         private async Task<Guid> GetEmployeeDetails(BookingDto booking)
         {

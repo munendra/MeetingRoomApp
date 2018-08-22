@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace MeetingApp.Service.Contract
 {
-    public interface IMeetingRoomBookingService
+    public interface IRoomBookingService
     {
         Task Booking(BookingDto booking);
     }

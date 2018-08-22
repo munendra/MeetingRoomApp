@@ -2,7 +2,6 @@ using MeetingApp.Domain.Entities;
 using MeetingApp.Dto;
 using MeetingApp.Logic.Contract;
 using MeetingApp.Logic.Implementation;
-using MeetingApp.Mapper;
 using MeetingApp.Repository.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -16,7 +15,7 @@ namespace MeetingApp.Logic.Test
     public class BookingLogicTest
     {
 
-        private MeetingRoomBookingLogic _meetingRoomBookingLogic;
+        private BookingLogic _meetingRoomBookingLogic;
         private Mock<IEmployeeLogic> _EmployeeLogic;
         private Mock<IBookingRepository> _bookingRepo;
         private Mock<IBookingValidation> _bookingValidation;
@@ -28,7 +27,7 @@ namespace MeetingApp.Logic.Test
             _EmployeeLogic = new Mock<IEmployeeLogic>();
             _bookingRepo = new Mock<IBookingRepository>();
             _bookingValidation = new Mock<IBookingValidation>();
-            _meetingRoomBookingLogic = new MeetingRoomBookingLogic(_EmployeeLogic.Object, _bookingRepo.Object, _bookingValidation.Object);
+            _meetingRoomBookingLogic = new BookingLogic(_EmployeeLogic.Object, _bookingRepo.Object, _bookingValidation.Object);
         }
 
         [TestMethod]
@@ -63,6 +62,8 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.NewGuid()
             });
             _bookingRepo.Setup(b => b.GetAsync(It.IsAny<Guid>())).ReturnsAsync(bookings);
+            _bookingValidation.Setup(s => s.IsRoomAvailable(It.IsAny<IEnumerable<BookingDto>>(),
+              It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(true);
             await _meetingRoomBookingLogic.Booking(booking);
             _EmployeeLogic.Verify(employeeLogic => employeeLogic.FetchOrSaveAsync(It.IsAny<EmployeeDto>()), Times.Once);
         }
@@ -93,6 +94,8 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.NewGuid()
             });
             _bookingRepo.Setup(b => b.GetAsync(It.IsAny<Guid>())).ReturnsAsync(bookings);
+            _bookingValidation.Setup(s => s.IsRoomAvailable(It.IsAny<IEnumerable<BookingDto>>(),
+              It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(true);
             await _meetingRoomBookingLogic.Booking(booking);
             _bookingRepo.Verify(b => b.GetAsync(It.IsAny<Guid>()), Times.Once);
         }
@@ -123,8 +126,8 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = Guid.NewGuid()
             });
             _bookingRepo.Setup(b => b.GetAsync(It.IsAny<Guid>())).ReturnsAsync(bookings);
-            _bookingValidation.Setup(s => s.CheckRoomAvailable(It.IsAny<IEnumerable<BookingDto>>(),
-                It.IsAny<DateTime>(), It.IsAny<DateTime>()));
+            _bookingValidation.Setup(s => s.IsRoomAvailable(It.IsAny<IEnumerable<BookingDto>>(),
+                It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(true);
             await _meetingRoomBookingLogic.Booking(booking);
             _bookingRepo.Verify(b => b.AddAsync(It.IsAny<Booking>()), Times.Once);
 

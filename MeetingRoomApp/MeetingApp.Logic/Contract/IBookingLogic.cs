@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 
 namespace MeetingApp.Logic.Contract
 {
-    public  interface IMeetingRoomBookingLogic
+    public  interface IBookingLogic
     {
         Task Booking(BookingDto booking);
+        
     }
 }

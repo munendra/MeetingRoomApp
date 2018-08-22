@@ -7,5 +7,7 @@ namespace MeetingApp.Service.Contract
     public  interface IRoomService
     {
         Task<IEnumerable<RoomDto>> GetAll();
+
+        Task<bool> CheckRoomAvailability(CheckBookingDto checkBooking);
     }
 }

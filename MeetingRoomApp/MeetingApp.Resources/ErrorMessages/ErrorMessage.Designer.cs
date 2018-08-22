@@ -68,5 +68,14 @@ namespace MeetingApp.Resources.ErrorMessages {
                 return ResourceManager.GetString("BookingDetailsIsEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Room not available.
+        /// </summary>
+        public static string RoomNotAvailable {
+            get {
+                return ResourceManager.GetString("RoomNotAvailable", resourceCulture);
+            }
+        }
     }
 }

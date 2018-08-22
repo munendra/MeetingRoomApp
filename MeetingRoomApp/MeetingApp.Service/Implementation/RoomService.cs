@@ -18,5 +18,10 @@ namespace MeetingApp.Service.Implementation
         {
             return await _roomLogic.GetAll();
         }
+
+        public async Task<bool> CheckRoomAvailability(CheckBookingDto checkBooking)
+        {
+           return await _roomLogic.CheckRoomAvailability(checkBooking);
+        }
     }
 }

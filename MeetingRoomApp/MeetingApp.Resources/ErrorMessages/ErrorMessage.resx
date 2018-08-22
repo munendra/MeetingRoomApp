@@ -120,4 +120,7 @@
   <data name="BookingDetailsIsEmpty" xml:space="preserve">
     <value>Booking details are null or empty</value>
   </data>
+  <data name="RoomNotAvailable" xml:space="preserve">
+    <value>Room not available</value>
+  </data>
 </root>

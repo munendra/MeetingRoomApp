@@ -9,5 +9,7 @@ namespace MeetingApp.Logic.Implementation
     public interface IRoomLogic
     {
         Task<IEnumerable<RoomDto>> GetAll();
+
+        Task<bool> CheckRoomAvailability(CheckBookingDto checkBooking);
     }
 }

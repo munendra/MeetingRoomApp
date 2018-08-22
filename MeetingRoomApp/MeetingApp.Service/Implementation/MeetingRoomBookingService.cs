@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace MeetingApp.Service.Implementation
 {
-    public class MeetingRoomBookingService : IMeetingRoomBookingService
+    public class MeetingRoomBookingService : IRoomBookingService
     {
-        private readonly IMeetingRoomBookingLogic _meetingRoomBookingLogic;
+        private readonly IBookingLogic _meetingRoomBookingLogic;
 
-        public MeetingRoomBookingService(IMeetingRoomBookingLogic meetingRoomBookingLogic)
+        public MeetingRoomBookingService(IBookingLogic meetingRoomBookingLogic)
         {
             _meetingRoomBookingLogic = meetingRoomBookingLogic;
         }

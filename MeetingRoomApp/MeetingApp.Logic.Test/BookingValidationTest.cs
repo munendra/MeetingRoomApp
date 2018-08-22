@@ -30,7 +30,6 @@ namespace MeetingApp.Logic.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void MeetingRoomBookingLogic_Booking_ShouldThrowExceptionBookingTimeSame()
         {
             var bookings = new List<BookingDto>();
@@ -42,19 +41,18 @@ namespace MeetingApp.Logic.Test
             });
             bookings.Add(new BookingDto
             {
-               
+
                 StartDateTime = new DateTime(2018, 08, 23, 10, 00, 00),
                 EndDateTime = new DateTime(2018, 08, 23, 11, 00, 00),
                 EmployeeId = "Temp-Id"
             });
-           
-             _bookingValidation.CheckRoomAvailable(bookings, new DateTime(2018, 08, 22, 14, 00, 00), new DateTime(2018, 08, 22, 16, 00, 00));
 
+            var result = _bookingValidation.IsRoomAvailable(bookings, new DateTime(2018, 08, 22, 14, 00, 00), new DateTime(2018, 08, 22, 16, 00, 00));
+            Assert.IsFalse(result);
         }
 
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void MeetingRoomBookingLogic_Booking_ShouldThrowExceptionBookingStartDateTimeIsInBetweenOfBookedSlot()
         {
             var bookings = new List<BookingDto>();
@@ -73,13 +71,12 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = "Temp-Id"
             });
 
-            _bookingValidation.CheckRoomAvailable(bookings, new DateTime(2018, 08, 22, 15, 00, 00), new DateTime(2018, 08, 22, 16, 00, 00));
-
+            var result = _bookingValidation.IsRoomAvailable(bookings, new DateTime(2018, 08, 22, 15, 00, 00), new DateTime(2018, 08, 22, 16, 00, 00));
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
-        public void MeetingRoomBookingLogic_Booking_ShouldThrowExceptionBookingDateTimeIsInBetweenOfBookedSlot()
+        public void MeetingRoomBookingLogic_Booking_ShouldReturnFalseBookingDateTimeIsInBetweenOfBookedSlot()
         {
             var bookings = new List<BookingDto>();
             bookings.Add(new BookingDto
@@ -97,8 +94,8 @@ namespace MeetingApp.Logic.Test
                 EmployeeId = "Temp-Id"
             });
 
-            _bookingValidation.CheckRoomAvailable(bookings, new DateTime(2018, 08, 22, 15, 00, 00), new DateTime(2018, 08, 22, 17, 00, 00));
-
+            var result = _bookingValidation.IsRoomAvailable(bookings, new DateTime(2018, 08, 22, 15, 00, 00), new DateTime(2018, 08, 22, 17, 00, 00));
+            Assert.IsFalse(result);
         }
     }
 }
